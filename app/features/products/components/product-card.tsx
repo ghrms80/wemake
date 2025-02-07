@@ -1,5 +1,4 @@
 import { Link } from "react-router";
-import { ChevronUpIcon, EyeIcon, MessageCircleIcon } from "lucide-react";
 import {
   Card,
   CardDescription,
@@ -8,6 +7,7 @@ import {
   CardTitle,
 } from "~/common/components/ui/card";
 import { Button } from "~/common/components/ui/button";
+import { ChevronUpIcon, EyeIcon, MessageCircleIcon } from "lucide-react";
 
 interface ProductCardProps {
   id: string;
@@ -56,4 +56,4 @@ export function ProductCard({
       </Card>
     </Link>
   );
-} 
+}
