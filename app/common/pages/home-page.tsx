@@ -8,7 +8,6 @@ import { Badge } from "../components/ui/badge";
 import { JobCard } from "~/features/jobs/components/job-card";
 import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
 import { TeamCard } from "~/features/teams/components/team-card";
-import type { Route } from "./+types/home-page";
 
 export const meta: MetaFunction = () => {
   return [
@@ -17,21 +16,13 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export const loader = () => {
-  console.log("Hello");
-  return {
-    hello: "world",
-    hello2: "world2",
-  };
-};
-
-export default function HomePage({ loaderData }: Route.ComponentProps) {
+export default function HomePage() {
   return (
     <div className="px-20 space-y-40">
       <div className="grid grid-cols-2 gap-4">
         <div>
           <h2 className="text-5xl font-bold leading-tight tracking-tight">
-            Today's Products {JSON.stringify(loaderData)}
+            Today's Products
           </h2>
           <p className="text-xl font-light text-foreground">
             The best products made by our community today.
