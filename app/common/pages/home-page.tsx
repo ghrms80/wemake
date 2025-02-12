@@ -8,7 +8,8 @@ import { Badge } from "../components/ui/badge";
 import { JobCard } from "~/features/jobs/components/job-card";
 import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
 import { TeamCard } from "~/features/teams/components/team-card";
-import type { Route } from "~/types";
+import type { Route } from "./+types/home-page";
+
 export const meta: MetaFunction = () => {
   return [
     { title: "Home | wemake" },
@@ -20,10 +21,11 @@ export const loader = () => {
   console.log("Hello");
   return {
     hello: "world",
+    hello2: "world2",
   };
 };
 
-export default function HomePage({ loaderData }) {
+export default function HomePage({ loaderData }: Route.ComponentProps) {
   return (
     <div className="px-20 space-y-40">
       <div className="grid grid-cols-2 gap-4">

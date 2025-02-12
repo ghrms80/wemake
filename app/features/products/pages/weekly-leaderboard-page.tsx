@@ -1,5 +1,5 @@
-import type { Route } from "~/types";
-import type { MetaFunction } from "@remix-run/react";
+import type { MetaFunction } from "react-router";
+import type { Route } from "./+types/weekly-leaderboard-page";
 
 export function loader({ request, params }: Route.LoaderArgs) {
     const { year, week } = params;

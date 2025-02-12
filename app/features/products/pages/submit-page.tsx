@@ -1,5 +1,5 @@
-import type { Route } from "~/types";
-import type { MetaFunction } from "@remix-run/react";
+import type { MetaFunction } from "react-router";
+import type { Route } from "./+types/submit-page";
 
 export function action({ request }: Route.ActionArgs) {
     // 제품 제출 로직 구현 예정
