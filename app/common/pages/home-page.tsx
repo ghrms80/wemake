@@ -33,6 +33,7 @@ export default function HomePage() {
         </div>
         {Array.from({ length: 10 }).map((_, index) => (
           <ProductCard
+            key={`productId-${index}`}
             id={`productId-${index}`}
             name="Product Name"
             description="Product Description"

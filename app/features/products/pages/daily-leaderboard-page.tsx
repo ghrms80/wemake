@@ -1,30 +1,122 @@
-import type { MetaFunction } from "react-router";
+import { DateTime } from "luxon";
 import type { Route } from "./+types/daily-leaderboard-page";
+import { data, isRouteErrorResponse, Link } from "react-router";
+import { z } from "zod";
+import { Hero } from "~/common/components/hero";
+import { ProductCard } from "../components/product-card";
+import { Button } from "~/common/components/ui/button";
+import { ChevronRightIcon } from "lucide-react";
+import { ChevronLeftIcon } from "lucide-react";
+import ProductPagination from "~/common/components/product-pagination";
+const paramsSchema = z.object({
+  year: z.coerce.number(),
+  month: z.coerce.number(),
+  day: z.coerce.number(),
+});
 
-export function loader({ request, params }: Route.LoaderArgs) {
-    const { year, month, day } = params;
-    return {
-        year,
-        month,
-        day,
-        products: [],
-    };
-}
+export const loader = ({ params }: Route.LoaderArgs) => {
+  const { success, data: parsedData } = paramsSchema.safeParse(params);
+  if (!success) {
+    throw data(
+      {
+        error_code: "invalid_params",
+        error_message: "Invalid params",
+      },
+      {
+        status: 400,
+      }
+    );
+  }
 
-export const meta: MetaFunction = () => {
-    return [
-        { title: "일간 리더보드" },
-        { name: "description", content: "일간 인기 제품" },
-    ];
+  const date = DateTime.fromObject(parsedData).setZone("Asia/Seoul");
+  if (!date.isValid) {
+    throw data(
+      {
+        error_code: "invalid_date",
+        error_message: "Invalid date",
+      },
+      {
+        status: 400,
+      }
+    );
+  }
+  const today = DateTime.now().setZone("Asia/Seoul").startOf("day");
+  if (date > today) {
+    throw data(
+      {
+        error_code: "future_date",
+        error_message: "Future date",
+      },
+      {
+        status: 400,
+      }
+    );
+  }
+  return {
+    ...parsedData,
+  };
 };
 
-export default function DailyLeaderboardPage({ loaderData }: Route.ComponentProps) {
-    const { year, month, day, products } = loaderData;
+export default function DailyLeaderboardPage({
+  loaderData,
+}: Route.ComponentProps) {
+  // const date = DateTime.fromObject(loaderData).setZone("Asia/Seoul");
+  const urlDate = DateTime.fromObject({
+    year: loaderData.year,
+    month: loaderData.month,
+    day: loaderData.day,
+  });
+  const previousDay = urlDate.minus({ days: 1 });
+  const nextDay = urlDate.plus({ days: 1 });
+  const isToday = urlDate.equals(DateTime.now().startOf("day"));
 
-    return (
-        <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-6">{year}년 {month}월 {day}일 리더보드</h1>
-            {/* 일간 리더보드 구현 예정 */}
-        </div>
-    );
-} 
+  return (
+    <div className="space-y-10">
+      <Hero title={`The best productsof ${urlDate.toLocaleString(DateTime.DATE_MED)}`} />
+      <div className="flex items-center justify-center gap-2">
+        <Button variant="secondary" asChild>
+          <Link to={`/products/leaderboards/daily/${previousDay.year}/${previousDay.month}/${previousDay.day}`}>
+            <ChevronLeftIcon className="size-4" />
+            {previousDay.toLocaleString(DateTime.DATE_SHORT)}
+          </Link>
+        </Button>
+        {!isToday ? (
+          <Button variant="secondary" asChild>
+            <Link to={`/products/leaderboards/daily/${nextDay.year}/${nextDay.month}/${nextDay.day}`}>
+              {nextDay.toLocaleString(DateTime.DATE_SHORT)}
+              <ChevronRightIcon className="size-4" />
+            </Link>
+          </Button>
+        ) : null}
+      </div>
+      <div className="space-y-5 w-full max-w-screen-md mx-auto">
+        {Array.from({ length: 10 }).map((_, index) => (
+          <ProductCard
+            key={`productId-${index}`}
+            id={`productId-${index}`}
+            name="Product Name"
+            description="Product Description"
+            commentsCount={12}
+            viewsCount={12}
+            upvotesCount={120}
+          />
+        ))}
+      </div>
+      <ProductPagination totalPages={10} />
+    </div>
+  );
+}
+
+
+export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
+  if (isRouteErrorResponse(error)) {
+    return <div>{error.data.error_message} / {error.data.error_code}</div>;
+  }
+
+  if (error instanceof Error) {
+    return <div>{error.message}</div>;
+  }
+
+  return <div>Unknown Error</div>;
+}
+
