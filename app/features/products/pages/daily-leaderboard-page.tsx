@@ -15,6 +15,23 @@ const paramsSchema = z.object({
   day: z.coerce.number(),
 });
 
+export const meta: Route.MetaFunction = ({ params }) => {
+  const urlDate = DateTime.fromObject({
+    year: Number(params.year),
+    month: Number(params.month),
+    day: Number(params.day),
+  })
+    .setZone("Asia/Seoul")
+    .setLocale("ko-KR");
+  return [
+    {
+      title: `The best productsof ${urlDate.toLocaleString(
+        DateTime.DATE_MED
+      )} | wemake`,
+    },
+  ];
+};
+
 export const loader = ({ params }: Route.LoaderArgs) => {
   const { success, data: parsedData } = paramsSchema.safeParse(params);
   if (!success) {

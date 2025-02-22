@@ -1,7 +1,7 @@
 import { DateTime } from "luxon";
 import type { Route } from "./+types/weekly-leaderboard-page";
 import { data, isRouteErrorResponse, Link } from "react-router";
-import { z } from "zod";
+import { date, z } from "zod";
 import { Hero } from "~/common/components/hero";
 import { ProductCard } from "../components/product-card";
 import { Button } from "~/common/components/ui/button";
@@ -13,6 +13,24 @@ const paramsSchema = z.object({
   year: z.coerce.number(),
   week: z.coerce.number(),
 });
+
+export const meta: Route.MetaFunction = ({ params }) => {
+  const urlDate = DateTime.fromObject({
+    weekYear: Number(params.year),
+    weekNumber: Number(params.week),
+  })
+    .setZone("Asia/Seoul")
+    .setLocale("ko-KR");
+  return [
+    {
+      title: `Best of week ${urlDate
+        .startOf("week")
+        .toLocaleString(DateTime.DATE_SHORT)} - ${urlDate
+        .endOf("week")
+        .toLocaleString(DateTime.DATE_SHORT)} | wemake`,
+    },
+  ];
+};
 
 export const loader = ({ params }: Route.LoaderArgs) => {
   const { success, data: parsedData } = paramsSchema.safeParse(params);
@@ -28,7 +46,6 @@ export const loader = ({ params }: Route.LoaderArgs) => {
     );
   }
 
-  // const date = DateTime.fromObject(parsedData).setZone("Asia/Seoul");
   const date = DateTime.fromObject({
     weekYear: parsedData.year,
     weekNumber: parsedData.week,
@@ -65,7 +82,6 @@ export const loader = ({ params }: Route.LoaderArgs) => {
 export default function WeeklyLeaderboardPage({
   loaderData,
 }: Route.ComponentProps) {
-  // const date = DateTime.fromObject(loaderData).setZone("Asia/Seoul");
   const urlDate = DateTime.fromObject({
     weekYear: loaderData.year,
     weekNumber: loaderData.week,
