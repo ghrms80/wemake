@@ -8,6 +8,7 @@ import { Button } from "~/common/components/ui/button";
 import { ChevronRightIcon } from "lucide-react";
 import { ChevronLeftIcon } from "lucide-react";
 import ProductPagination from "~/common/components/product-pagination";
+
 const paramsSchema = z.object({
   year: z.coerce.number(),
   month: z.coerce.number(),
