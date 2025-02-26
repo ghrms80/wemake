@@ -1,26 +1,31 @@
-import type { MetaFunction } from "react-router";
 import type { Route } from "./+types/categories-page";
+import { Hero } from "~/common/components/hero";
+import { CategoryCard } from "../components/category-card";
 
-export function loader({ request }: Route.LoaderArgs) {
-    return {
-        categories: [],
-    };
-}
-
-export const meta: MetaFunction = () => {
-    return [
-        { title: "카테고리" },
-        { name: "description", content: "제품 카테고리 목록" },
-    ];
+export const meta: Route.MetaFunction = () => {
+  return [
+    { title: "Categories | wemake" },
+    { name: "description", content: "Product categories" },
+  ];
 };
 
-export default function CategoriesPage({ loaderData }: Route.ComponentProps) {
-    const { categories } = loaderData;
-
-    return (
-        <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-6">카테고리</h1>
-            {/* 카테고리 목록 구현 예정 */}
-        </div>
-    );
+export default function CategoriesPage() {
+  return (
+    <div className="space-y-10">
+      <Hero
+        title="Categories"
+        description="Browse products by category"
+      />
+      <div className="grid grid-cols-3 gap-10">
+        {Array.from({ length: 9 }).map((_, index) => (
+          <CategoryCard
+            key={`categoryId-${index}`}
+            id={`categoryId-${index}`}
+            name={`Category Name`}
+            description={`Category Description`}
+          />
+        ))} 
+      </div>
+    </div>
+  );
 } 
