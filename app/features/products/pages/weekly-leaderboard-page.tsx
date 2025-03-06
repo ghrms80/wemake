@@ -26,8 +26,8 @@ export const meta: Route.MetaFunction = ({ params }) => {
       title: `Best of week ${urlDate
         .startOf("week")
         .toLocaleString(DateTime.DATE_SHORT)} - ${urlDate
-        .endOf("week")
-        .toLocaleString(DateTime.DATE_SHORT)} | wemake`,
+          .endOf("week")
+          .toLocaleString(DateTime.DATE_SHORT)} | wemake`,
     },
   ];
 };

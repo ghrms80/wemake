@@ -7,13 +7,13 @@ export function loader({ params, request }: Route.LoaderArgs) {
     let url: string;
     const today = DateTime.now().setZone("Asia/Seoul");
 
-    if(period === "daily") {
+    if (period === "daily") {
         url = `/products/leaderboards/daily/${today.year}/${today.month}/${today.day}`;
-    } else if(period === "weekly") {
+    } else if (period === "weekly") {
         url = `/products/leaderboards/weekly/${today.year}/${today.weekNumber}`;
-    } else if(period === "monthly") {
+    } else if (period === "monthly") {
         url = `/products/leaderboards/monthly/${today.year}/${today.month}`;
-    } else if(period === "yearly") {
+    } else if (period === "yearly") {
         url = `/products/leaderboards/yearly/${today.year}`;
     } else {
         return data(null, {
