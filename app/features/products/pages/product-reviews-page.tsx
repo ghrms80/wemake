@@ -5,14 +5,10 @@ export function meta() {
   ];
 }
 
-export default function ProductRedirectPage() {
-  // 이 컴포넌트는 렌더링되지 않습니다 (리디렉션 발생)
+export default function ProductReviewsPage() {
   return (
     <div className="space-y-10">
-      <div className="flex justify-between">
-        <div></div>
-        <div></div>
-      </div>
+      <h1 className="text-3xl font-bold mb-6">Product Reviews</h1>
     </div>
   );
 }
