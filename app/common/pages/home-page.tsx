@@ -57,6 +57,7 @@ export default function HomePage() {
         </div>
         {Array.from({ length: 10 }).map((_, index) => (
           <PostCard
+            key={`postId-${index}`}
             id={`postId-${index}`}
             title="What is the best productivity tool?"
             author="Nico"
@@ -81,6 +82,7 @@ export default function HomePage() {
         </div>
         {Array.from({ length: 10 }).map((_, index) => (
           <IdeaCard
+            key={`ideaId-${index}`}
             id={`ideaId-${index}`}
             title="A startup that creates an AI-powered generated personal trainer, delivering customized fitness recommendations and tracking of progress using a mobile app to track workouts and progress as well as a manage the business."
             viewCount={123}
@@ -104,6 +106,7 @@ export default function HomePage() {
         </div>
         {Array.from({ length: 11 }).map((_, index) => (
           <JobCard
+            key={`jobId-${index}`}
             id={`jobId-${index}`}
             company="Tesla"
             companyLogoUrl="https://github.com/facebook.png"

@@ -44,8 +44,8 @@ export function CreateReviewDialog() {
                 <StarIcon
                   className="size-5 text-yellow-400"
                   fill={
-                    rating >= star || hoveredStar >= star 
-                    ? "currentColor" : "none"
+                    rating >= star || hoveredStar >= star
+                      ? "currentColor" : "none"
                   }
                 />
                 <input
