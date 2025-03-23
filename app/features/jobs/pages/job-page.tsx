@@ -51,6 +51,18 @@ export default function JobPage() {
             </ul>
           </div>
           <div className="space-y-2.5">
+            <h4 className="text-2xl font-bold">Qualifications</h4>
+            <ul className="list-disc list-inside text-lg">
+              {[
+                "Bachelor's degree in Computer Science or related field",
+                "3+ years of experience in software development",
+                "Strong understanding of software engineering principles",
+              ].map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="space-y-2.5">
             <h4 className="text-2xl font-bold">Benefits</h4>
             <ul className="list-disc list-inside text-lg">
               {[
