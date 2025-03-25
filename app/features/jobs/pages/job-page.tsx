@@ -16,12 +16,12 @@ export default function JobPage() {
       <div className="grid grid-cols-6 -mt-20 gap-20 items-start">
         <div className="col-span-4 space-y-10">
           <div>
-          <div className="rounded-full border-white size-40 overflow-hidden relative left-10">
-            <img 
-              src="https://github.com/facebook.png" 
-              className="object-cover"
-            />
-          </div>
+            <div className="rounded-full border-white size-40 overflow-hidden relative left-10">
+              <img
+                src="https://github.com/facebook.png"
+                className="object-cover"
+              />
+            </div>
             <h1 className="text-4xl font-bold">Software Engineer</h1>
             <h4 className="text-lg text-muted-foreground">Meta Inc.</h4>
           </div>
@@ -42,8 +42,8 @@ export default function JobPage() {
             <h4 className="text-2xl font-bold">Responsibilities</h4>
             <ul className="list-disc list-inside text-lg">
               {[
-                "Design and implement scalable and efficient systems", 
-                "Collaborate with other teams to ensure seamless integration", 
+                "Design and implement scalable and efficient systems",
+                "Collaborate with other teams to ensure seamless integration",
                 "Optimize performance and maintainability of code",
               ].map((item) => (
                 <li key={item}>{item}</li>
