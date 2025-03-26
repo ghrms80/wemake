@@ -1,30 +1,46 @@
+import type { Route } from "./+types/otp-complete-page";
 import { Form } from "react-router";
 import { Button } from "~/common/components/ui/button";
-import { Input } from "~/common/components/ui/input";
-import type { Route } from "./+types/otp-complete-page";
+import InputPair from "~/common/components/input-pair";
 
 export const meta: Route.MetaFunction = () => {
-  return [
-    { title: "OTP 인증 완료 | wemake" },
-    { name: "description", content: "OTP 인증 완료 페이지" }
-  ];
+  return [{ title: "Verify OTP | wemake" }];
 };
 
-export default function OtpCompletePage() {
+export default function OtpPage() {
   return (
-    <div className="space-y-6">
-      <div className="space-y-2 text-center">
-        <h3 className="text-2xl font-bold">OTP 인증 완료</h3>
-        <p className="text-sm text-muted-foreground">
-          인증 코드를 입력하여 OTP 설정을 완료하세요
-        </p>
-      </div>
-      <Form className="space-y-4">
-        <div className="space-y-2">
-          <Input placeholder="인증 코드 6자리 입력" />
+    <div className="flex flex-col relative items-center justify-center h-full">
+      <div className="flex items-center flex-col justify-center w-full max-w-md gap-10">
+        <div className="text-center">
+          <h1 className="text-2xl font-semibold">Confirm OTP</h1>
+          <p className="text-sm text-muted-foreground">
+            Enter the OTP code sent to your email.
+          </p>
         </div>
-        <Button type="submit" className="w-full">인증 완료</Button>
-      </Form>
+        <Form className="w-full space-y-4">
+          <InputPair
+            id="email"
+            label="Email"
+            description="Enter your email"
+            name="email"
+            required
+            type="email"
+            placeholder="i.e wemake@gmail.com"
+          />
+          <InputPair
+            id="OTP"
+            label="OTP"
+            description="Enter the OTP code sent to your email"
+            name="OTP"
+            required
+            type="number"
+            placeholder="i.e 1234"
+          />
+          <Button type="submit" className="w-full">
+            Log in
+          </Button>
+        </Form>
+      </div>
     </div>
   );
 }

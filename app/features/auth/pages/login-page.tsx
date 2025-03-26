@@ -2,7 +2,7 @@ import type { Route } from "./+types/login-page";
 import { Form, Link } from "react-router";
 import { Button } from "~/common/components/ui/button";
 import InputPair from "~/common/components/input-pair";
-
+import { AuthButtons } from "../components/auth-buttons";
 export const meta: Route.MetaFunction = () => {
   return [{ title: "Login | wemake" }];
 };
@@ -38,6 +38,7 @@ export default function LoginPage() {
             Login
           </Button>
         </Form>
+        <AuthButtons />
       </div>
     </div>
   );
