@@ -25,7 +25,7 @@ export default function CommunityPage() {
       <div className="grid grid-cols-6 items-start gap-40">
         <div className="col-span-4 space-y-10">
           <div className="flex justify-between">
-            <div className="space-y-5">
+            <div className="space-y-5 w-full">
               <div className="flex items-center gap-5">
                 <DropdownMenu>
                   <DropdownMenuTrigger className="flex items-center gap-1">
@@ -83,7 +83,7 @@ export default function CommunityPage() {
               </Form>
             </div>
             <Button asChild>
-              <Link to={`/community/new`}>Create Discussion</Link>
+              <Link to={`/community/submit`}>Create Discussion</Link>
             </Button>
           </div>
           <div className="space-y-5">
@@ -114,7 +114,7 @@ export default function CommunityPage() {
               "Note Taking Apps",
               "Productivity Tools",
             ].map((category) => (
-              <Button asChild variant={"link"} key={category}>
+              <Button asChild variant={"link"} key={category} className="pl-0">
                 <Link to={`/community?topic=${category}`}>{category}</Link>
               </Button>
             ))}
