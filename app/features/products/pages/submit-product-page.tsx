@@ -1,8 +1,7 @@
 import { Form } from "react-router";
-import type { Route } from "./+types/submit-page";
+import type { Route } from "./+types/submit-product-page";
 import { Hero } from "~/common/components/hero";
 import InputPair from "~/common/components/input-pair";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/common/components/ui/select";
 import SelectPair from "~/common/components/select-pair";
 import { Input } from "~/common/components/ui/input";
 import { Label } from "~/common/components/ui/label";
@@ -23,8 +22,7 @@ export default function SubmitPage() {
       const file = event.target.files[0];
       setIcon(URL.createObjectURL(file));
     }
-  }
-
+  };
   return (
     <div>
       <Hero
@@ -86,11 +84,11 @@ export default function SubmitPage() {
           <Button type="submit" className="w-full" size="lg">Submit</Button>
         </div>
         <div className="flex flex-col space-y-2">
-          {icon ? (
-            <div className="size-40 rounded-xl shadow-xl overflow-hidden">
+          <div className="size-40 rounded-xl shadow-xl overflow-hidden">
+            {icon ? (
               <img src={icon} className="w-full h-full object-cover" />
-            </div>
-          ) : null}
+            ) : null}
+          </div>
           <Label className="flex flex-col gap-1">Icon
             <small className="text-muted-foreground">
               The icon of your product
