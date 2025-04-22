@@ -34,7 +34,7 @@ export default function LeaderboardPage() {
             description="Product Description"
             commentsCount={12}
             viewsCount={12}
-            upvotesCount={120}
+            votesCount={120}
           />
         ))}
         <Button variant="link" asChild className="text-lg self-center">
@@ -59,7 +59,7 @@ export default function LeaderboardPage() {
             description="Product Description"
             commentsCount={12}
             viewsCount={12}
-            upvotesCount={120}
+            votesCount={120}
           />
         ))}
         <Button variant="link" asChild className="text-lg self-center">
@@ -84,7 +84,7 @@ export default function LeaderboardPage() {
             description="Product Description"
             commentsCount={12}
             viewsCount={12}
-            upvotesCount={120}
+            votesCount={120}
           />
         ))}
         <Button variant="link" asChild className="text-lg self-center">
@@ -110,7 +110,7 @@ export default function LeaderboardPage() {
             description="Product Description"
             commentsCount={12}
             viewsCount={12}
-            upvotesCount={120}
+            votesCount={120}
           />
         ))}
         <Button variant="link" asChild className="text-lg self-center">

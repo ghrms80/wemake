@@ -124,7 +124,7 @@ export default function WeeklyLeaderboardPage({
             description="Product Description"
             commentsCount={12}
             viewsCount={12}
-            upvotesCount={120}
+            votesCount={120}
           />
         ))}
       </div>
